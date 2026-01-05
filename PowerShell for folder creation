@@ -1,0 +1,27 @@
+# create project folders
+New-Item -ItemType Directory -Path C:\projects\blockchain-scf -Force
+Set-Location C:\projects\blockchain-scf
+
+New-Item -ItemType Directory -Path .\contracts,.\abi,.\scripts,.\config,.\deployment,.\tests -Force
+
+# create python venv and activate
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+
+# upgrade pip and install web3
+python -m pip install --upgrade pip
+pip install web3
+
+# create requirements.txt
+@"
+web3
+"@ > requirements.txt
+
+# create .gitignore
+@"
+venv/
+config/config_local.py
+*.pyc
+__pycache__/
+.env
+"@ > .gitignore
